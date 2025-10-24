@@ -1,0 +1,20 @@
+# Ignore MySQL data and socket files
+mysql_replication/
+*.sock
+*.pid
+*.cnf
+*.index
+*.ibd
+*.frm
+*.log
+
+# Ignore IDE & build folders
+.idea/
+*.iml
+target/
+out/
+bin/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db

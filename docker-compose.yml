@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  main-server:
+    build: ./MainServer
+    ports:
+      - "8080:8080"
+    networks:
+      - mysql-network
+
+  sub-server:
+    build: ./SubServer
+    ports:
+      - "8081:8080"
+    networks:
+      - mysql-network
+
+  mysql-master:
+    image: mysql:8.0
+    container_name: mysql-master
+    environment:
+      - MYSQL_ROOT_PASSWORD=31072004
+      - MYSQL_DATABASE=busticket
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql-network
+
+  mysql-slave:
+    image: mysql:8.0
+    container_name: mysql-slave
+    environment:
+      - MYSQL_ROOT_PASSWORD=31072004
+      - MYSQL_DATABASE=busticket
+    ports:
+      - "3307:3306"
+    networks:
+      - mysql-network
+
+networks:
+  mysql-network:
+    driver: bridge
